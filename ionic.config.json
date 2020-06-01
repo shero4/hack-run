@@ -1,0 +1,7 @@
+{
+  "name": "ponder",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
