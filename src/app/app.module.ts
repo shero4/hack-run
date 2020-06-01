@@ -12,16 +12,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule} from '@angular/common/http';
 import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
 import {ProgressBarModule} from "angular-progress-bar";
-export const firebaseConfig = {
-  apiKey: "AIzaSyB8P5X8TyRAdUm1bhUGz9I4XsG3kqSGluU",
-  authDomain: "shrii-finals.firebaseapp.com",
-  databaseURL: "https://shrii-finals.firebaseio.com",
-  projectId: "shrii-finals",
-  storageBucket: "shrii-finals.appspot.com",
-  messagingSenderId: "707548890228",
-  appId: "1:707548890228:web:8906b8f13414e494633d21",
-  measurementId: "G-GN0FS0ECQ3"
-};
+import * as environment from '../../environment'
+
+export const firebaseConfig = environment.environment.firebase
+
 @NgModule({
   declarations: [
     MyApp,
@@ -33,8 +27,6 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     HttpClientModule,
     ProgressBarModule
-  
-    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,14 +34,12 @@ export const firebaseConfig = {
   ],
 
   providers: [
-    
     StreamingMedia,
     StatusBar,
     SplashScreen,
     CameraPreview,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler },
-  
   ]
 })
 
