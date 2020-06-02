@@ -63,7 +63,6 @@ export class LoginPage {
         duration: 2000,
       });
       toast.present();
-      this.navCtrl.setRoot('HomePage');
     }
   }
 }
