@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { CameraPreview } from '@ionic-native/camera-preview';
 import { Camera } from '@ionic-native/camera/ngx';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule} from '@angular/common/http';
@@ -24,10 +24,10 @@ export const firebaseConfig = environment.environment.firebase
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
+    AngularFirestoreModule.enablePersistence(),
     HttpClientModule,
     ProgressBarModule,
-    AngularFirestore
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
