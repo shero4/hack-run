@@ -26,18 +26,14 @@ export class LoginPage {
   }
 
   ionViewWillLeave() {
-
     this.menu.enable(true);
   }
+
   async login() {
     const { email, password } = this
     console.log(this.email);
     console.log(this.password);
-    var c = 0;
-    try {
-      const res = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      c++;
-    } catch (err) {
+    await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(async (err)=>{
       console.dir(err);
       if (err.code == "auth/user-not-found") {
         const toast = await this.toastController.create({
@@ -53,14 +49,13 @@ export class LoginPage {
         });
         toast.present();
       }
-    }
-    if (c == 1) {
+    }).then( async (user) => {
       const toast = await this.toastController.create({
         message: 'Logged in successfully',
         duration: 2000,
       });
       toast.present();
       this.navCtrl.setRoot('HomePage');
-    }
+    });
   }
 }
