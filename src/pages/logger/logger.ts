@@ -3,6 +3,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+
 @IonicPage()
 @Component({
   selector: 'page-logger',
@@ -62,7 +63,7 @@ export class LoggerPage {
     this.afstore.collection('users').doc(this.afauth.auth.currentUser.uid).set({
       todos: this.todos,
       protime: this.protime,
-      acttime: this.acttime
+      acttime: this.acttime || ''
     })
   }
 }
