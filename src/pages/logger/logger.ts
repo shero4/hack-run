@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @IonicPage()
 @Component({
@@ -11,8 +13,13 @@ export class LoggerPage {
   todo: string;
   protime = [];
   acttime;
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    public afauth: AngularFireAuth,
+    public afstore: AngularFirestore
+    ) {
   }
+
   private mode(arr1: any) {
     var mf = 1;
     var m = 0;
