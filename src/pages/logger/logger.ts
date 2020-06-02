@@ -9,15 +9,26 @@ import { AngularFirestore } from '@angular/fire/firestore';
   templateUrl: 'logger.html',
 })
 export class LoggerPage {
-  todos: string[] = [];
+  todos = [];
   todo: string;
   protime = [];
-  acttime;
+  acttime: any;
   constructor(
     public navCtrl: NavController,
     public afauth: AngularFireAuth,
     public afstore: AngularFirestore
     ) {
+      this.afauth.auth.onAuthStateChanged(user => {
+        this.afstore.collection('users').doc(user.uid).get().toPromise().then(doc => {
+          if(doc.data()) {
+            this.todos = doc.data().todos;
+            this.protime = doc.data().protime;
+            this.acttime = this.mode(this.protime);
+          } else {
+            console.log("no ideas")
+          }
+        })
+      }) 
   }
 
   private mode(arr1: any) {
@@ -43,8 +54,15 @@ export class LoggerPage {
     this.todo = "";
     let date = new Date()
     this.protime.push(date.getHours());
-    console.log(this.protime)
     this.acttime = this.mode(this.protime);
-    console.log(this.acttime)
+    /*
+      Just as a POC for the hack we are not counting daily records, but eventually plan to store an
+      object with the respective date in it
+    */
+    this.afstore.collection('users').doc(this.afauth.auth.currentUser.uid).set({
+      todos: this.todos,
+      protime: this.protime,
+      acttime: this.acttime
+    })
   }
 }
