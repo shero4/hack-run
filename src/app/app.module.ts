@@ -24,10 +24,10 @@ export const firebaseConfig = environment.environment.firebase
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
     HttpClientModule,
     ProgressBarModule,
-    AngularFirestoreModule
+    AngularFirestoreModule.enablePersistence(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
