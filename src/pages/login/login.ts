@@ -7,6 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
 
   email: string;
@@ -31,29 +32,38 @@ export class LoginPage {
     const { email, password } = this
     console.log(this.email);
     console.log(this.password);
-    await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(async (err) => {
-      console.dir(err);
-      if (err.code == "auth/user-not-found") {
+    if(email && password) {
+      await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(async (err) => {
+        console.dir(err);
+        if (err.code == "auth/user-not-found") {
+          const toast = await this.toastController.create({
+            message: 'User does not exist',
+            duration: 2000,
+          });
+          toast.present();
+        }
+        if (err.code == "auth/wrong-password") {
+          const toast = await this.toastController.create({
+            message: 'Wrong Password',
+            duration: 2000,
+          });
+          toast.present();
+        }
+      }).then(async (user) => {
         const toast = await this.toastController.create({
-          message: 'User does not exist',
+          message: 'Logged in successfully',
           duration: 2000,
         });
         toast.present();
-      }
-      if (err.code == "auth/wrong-password") {
-        const toast = await this.toastController.create({
-          message: 'Wrong Password',
-          duration: 2000,
-        });
-        toast.present();
-      }
-    }).then(async (user) => {
+        this.navCtrl.setRoot('HomePage');
+      });
+    } else {
       const toast = await this.toastController.create({
-        message: 'Logged in successfully',
+        message: 'Please enter credentials',
         duration: 2000,
       });
       toast.present();
       this.navCtrl.setRoot('HomePage');
-    });
+    }
   }
 }

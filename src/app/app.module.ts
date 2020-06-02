@@ -11,7 +11,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule} from '@angular/common/http';
 import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
-import {ProgressBarModule} from "angular-progress-bar";
+import { ProgressBarModule } from "angular-progress-bar";
 import * as environment from '../../environment'
 
 export const firebaseConfig = environment.environment.firebase
