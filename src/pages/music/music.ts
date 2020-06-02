@@ -49,20 +49,9 @@ export class MusicPage {
     
     data:'../../assets/imgs/f1.png',
     text:'Med-4',
-    path:'../../assets/a4.ogg'
+    path:'../../assets/a5.ogg'
  },
- {
-  
-  data:'../../assets/imgs/f5.png',
-  text:'Med-5',
-  path:'../../assets/a5.ogg'
-},
-{
-  
-  data:'../../assets/imgs/f5.png',
-  text:'Med-6',
-  path:'../../assets/a5.ogg'
-},
+ 
   ];
 
   activeTrack:Track=null;
@@ -74,6 +63,7 @@ export class MusicPage {
   }
   ionViewDidLoad() {
     this.headimg='../../assets/imgs/Mehul Jangir.jpg';
+    this.content.scrollToBottom();
   }
  
   

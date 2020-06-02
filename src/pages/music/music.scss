@@ -10,14 +10,14 @@ page-music {
  
    
    .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
-    font-family: 'RiftSoft';
+    
     font-size: 1.4em;
   
   }
   .ion-text-center{
-    font-family: 'RiftSoft';
-    font-size: 1em;
-    color:#00bd56;
+    
+    font-size: 2em;
+    color:white;
   }
   .headboi{
     margin-top: 4em;
@@ -34,6 +34,8 @@ page-music {
     --ion-background-color:var(--ion-color-light);
     color:black;
   }
-
+ion-footer{
+  --background: white !important;
+}
       
 }
