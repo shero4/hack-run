@@ -15,13 +15,17 @@ export class PatentPage {
 
   public x = 2;
   constructor(public navCtrl: NavController, public navParams: NavParams, public toastController: ToastController, public loadingController: LoadingController) { }
+ 
+  /*
+    What design will look like, include the Plaigarism check api here
+  */
 
   yoyo() {
-
     let screenLoad = this.loadingController.create({
       content: "Loading",
       duration: 1500
     });
+
     screenLoad.present();
     if (this.text == null) {
       const toast = this.toastController.create({
@@ -31,7 +35,6 @@ export class PatentPage {
       toast.present();
     }
     else {
-
       document.getElementById("myDIV").style.display = "block";
     }
 

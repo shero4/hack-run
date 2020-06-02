@@ -52,10 +52,11 @@ export class LoggerPage {
 
   public add() {
     this.todos.push(this.todo);
-    this.todo = "";
     let date = new Date()
     this.protime.push(date.getHours());
     this.acttime = this.mode(this.protime);
+    if(this.protime.length == 1) {this.acttime = this.protime[0]}
+    this.todo = "";
     /*
       Just as a POC for the hack we are not counting daily records, but eventually plan to store an
       object with the respective date in it

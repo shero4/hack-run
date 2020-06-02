@@ -34,7 +34,7 @@ export class MyApp {
       { title: 'Notes', name: "LoggerPage" },
       {title:'Pintrest', name: "PintrestPage"},
       {title: 'Music', name:'MusicPage'},
-      {title:'Patent',name:'PatentPage'},
+      {title:'Plaigerism Check',name:'PatentPage'},
       { title: 'Logout', name: null },
     ];
   }
