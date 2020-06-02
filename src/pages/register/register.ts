@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'Firebase/app';
 
@@ -12,7 +12,12 @@ export class RegisterPage {
 
   email: string;
   password: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+     public menu: MenuController, 
+     public afAuth: AngularFireAuth,
+     public toastController: ToastController
+     ) {
   }
 
   ionViewDidLoad() {
@@ -29,17 +34,22 @@ export class RegisterPage {
   }
   async register() {
     const { email, password } = this
-    try {
-
-      const res = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-
-    } catch (err) {
-      console.dir(err);
+    if(email && password) {
+      await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((user)=>{
+        this.navCtrl.setRoot('HomePage');
+      }).catch(async err =>{
+        const toast = await this.toastController.create({
+          message: err.code,
+          duration: 2000,
+        });
+        toast.present();
+      });
+    } else {
+      const toast = await this.toastController.create({
+        message: 'Enter Credentials',
+        duration: 2000,
+      });
+      toast.present();
     }
-
-    alert('Your Login credentials are ' + ' ' + email + " " + password);
-    this.navCtrl.setRoot('HomePage');
-
   }
-
 }
