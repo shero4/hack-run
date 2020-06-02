@@ -32,4 +32,4 @@ export const environment = {
 
 ```
 
-also everyone is mehul. why? idk. 
+also everyone is mehul. why? idk...
