@@ -37,11 +37,14 @@ export class LoggerPage {
     }
     return item;
   }
+
   public add() {
     this.todos.push(this.todo);
     this.todo = "";
     let date = new Date()
     this.protime.push(date.getHours());
+    console.log(this.protime)
     this.acttime = this.mode(this.protime);
+    console.log(this.acttime)
   }
 }
