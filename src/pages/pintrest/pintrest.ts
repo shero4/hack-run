@@ -16,9 +16,6 @@ export class PintrestPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private http:HttpClient, public toastController: ToastController) {
     this.loadImages();
   }
-
- 
-  
   ionViewDidLoad() {
     console.log('ionViewDidLoad PintrestPage');
   }
@@ -36,7 +33,6 @@ export class PintrestPage {
     if (header.length == 0) {
       return ;
     }
-
     let parts = header.split(',');
     var links = {};
     parts.forEach( p => {
@@ -55,5 +51,4 @@ export class PintrestPage {
     });
     toast.present();
   }
-
 }

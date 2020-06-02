@@ -9,99 +9,83 @@
           </button>
         </ion-buttons>
       </ion-label>
-      <ion-label start style="font-size:20px !important; margin-top: 25px !important; " text-wrap class="textt">
-        <img src="" style="width:40%">
-
-      </ion-label>
     </ion-item>
   </ion-navbar>
-
 </ion-header>
 
-<ion-content padding scrollY="true">
-    <div class="headboi">
-        <img src="../../assets/imgs/kabir_o.jpg">
-        <h1>focus</h1>
-      </div>
-    
-    
-        <div class="song" (click)="audio1()">
-          <div class="album"><img src="../../assets/imgs/f1.png" class="albumart"></div>
-          <div class="texty">  
-            <div class="info">
-              <h2>Kai</h2>
-              <h4>Aditya Pramar</h4>
-            </div>
-              
-          </div>
-        </div>
-    
-        <div class="song" (click)="audio2()">
-          <div class="album"><img src="../../assets/imgs/f2.png" class="albumart"></div>
-          <div class="texty">  
-            <div class="info">
-              <h2>Sage</h2>
-              <h4>Aditya Pramar</h4>
-            </div>
-             
-          </div>
-        </div>
-    
-        <div class="song" (click)="audio3()">
-          <div class="album"><img src="../../assets/imgs/f3.png" class="albumart"></div>
-          <div class="texty"> 
-            <div class="info">
-              <h2>Choosing Life</h2>
-              <h4>Philip Glass</h4>
-            </div>
-          
-          </div>
-        </div>
-    
-        <div class="song" (click)="audio4()">
-          <div class="album"><img src="../../assets/imgs/f4.png" class="albumart"></div>
-          <div class="texty">  
-            <div class="info">
-              <h2>As We Keep Searching</h2>
-              <h4>Banshee</h4>
-            </div>
-              
-          </div>
-        </div>
-    
-        <div class="song" (click)="audio5()">
-          <div class="album"><img src="../../assets/imgs/f5.png" class="albumart"></div>
-          <div class="texty">  
-            <div class="info">
-              <h2>Rick 'N Morty</h2>
-              <h4>Swum</h4>
-            </div>
-          
-          </div>
-        </div>
-    
-        <div class="song" (click)="audio6()">
-          <div class="album"><img src="../../assets/imgs/f6.jpg" class="albumart"></div>
-          <div class="texty">  
-            <div class="info">
-              <h2>Slow Dancing In The Dark</h2>
-              <h4>Joji</h4>
-            </div>
-           
-          </div>
-        </div>
+<ion-content [fullscreen]="true" #content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Meditate</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="headboi" align="center" *ngIf="!activeTrack">
+    <img src="{{headimg}} " width="20%">
+    <h1></h1>
+  </div>
+  <div class="headboi" align="center" *ngIf="activeTrack">
+    <img src="{{activeTrack.data}} " width="20%">
+    <h1></h1>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let track of playlist " button (click)="start(track)">
+      <ion-avatar slot="start">
+        <img src="{{track.data}}" width="110%">
+      </ion-avatar>
+      <ion-label [color]="track ==activeTrack ? 'success' : 'dark' ">
+        {{track.text}}
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>
-<ion-footer>
-  <div align='center'>
-    <button ion-button (click)="startAudio()" style="background-color: #6699ee;" id="hibutton" >
-      <ion-icon name="play" id="ppicon"></ion-icon>
-      </button>
-  
-      <button ion-button (click)="stopAudio()" style="background-color: #6699ee;" id="hibutton" >
-      <ion-icon name="pause" id="ppicon"></ion-icon>
+
+
+<ion-footer *ngIf="activeTrack" align="center">
+  <ion-toolbar color="light">
+    <ion-row>
+
+      <ion-col size="12">
+
+
+        <ion-label class="ion-text-center">
+          {{activeTrack.text}}
+
+        </ion-label>
+
+      </ion-col>
+
+      <ion-col size="12">
+
+        <ion-range #range [(ngModel)]="progress" max="100" color="success" (touchend)="seek()" (moseup)="seek()">
+        </ion-range>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+
+        <button ion-button (click)="prev()" fill="clear" style="color: white;">
+          <ion-icon  name="skip-backward" slot="icon-only"></ion-icon>
         </button>
-  </div>
-  
+
+        <button ion-button (click)="togglePlayer(false)" fill="clear"  *ngIf="!isPlaying">
+          <ion-icon name="play" slot="icon-only"></ion-icon>
+        </button>
+
+        <button ion-button (click)="togglePlayer(true)" fill="clear"  *ngIf="isPlaying">
+          <ion-icon name="pause" slot="icon-only"></ion-icon>
+        </button>
+
+        <button ion-button (click)="next()" fill="clear" >
+          <ion-icon name="skip-forward" slot="icon-only"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-toolbar>
+
+
+
 </ion-footer>

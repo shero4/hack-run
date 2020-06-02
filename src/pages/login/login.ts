@@ -17,14 +17,12 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
   Register() {
     this.navCtrl.setRoot('RegisterPage');
   }
   ionViewDidEnter() {
     this.menu.enable(false);
   }
-
   ionViewWillLeave() {
     this.menu.enable(true);
   }
@@ -33,7 +31,7 @@ export class LoginPage {
     const { email, password } = this
     console.log(this.email);
     console.log(this.password);
-    await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(async (err)=>{
+    await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(async (err) => {
       console.dir(err);
       if (err.code == "auth/user-not-found") {
         const toast = await this.toastController.create({
@@ -49,7 +47,7 @@ export class LoginPage {
         });
         toast.present();
       }
-    }).then( async (user) => {
+    }).then(async (user) => {
       const toast = await this.toastController.create({
         message: 'Logged in successfully',
         duration: 2000,

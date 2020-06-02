@@ -9,12 +9,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class LoggerPage {
   todos: string[] = [];
   todo: string;
-  protime=[];
+  protime = [];
   acttime;
   constructor(public navCtrl: NavController) {
   }
-
-  private mode(arr1:any) {
+  private mode(arr1: any) {
     var mf = 1;
     var m = 0;
     var item;
@@ -31,7 +30,6 @@ export class LoggerPage {
     }
     return item;
   }
-
   public add() {
     this.todos.push(this.todo);
     this.todo = "";
