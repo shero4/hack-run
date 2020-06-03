@@ -16,11 +16,9 @@ Track: Dev Tools
 
 You can connect an android phone and run ionic cordova run android instead
 
-App will not function without firebase creds and I don't plan on giving them away today
+The app will not function without firebase creds and I don't want to risk a 3000$ bill in my firebase console today
 
-please create a file called environment.ts in the root directory with the content
-
-you can obtain this information by creating a firebase project, please use the exported apk to test with our bucket
+please create a file called environment.ts in the root directory with the content as shown below. You can obtain this information by creating a firebase project, please use the exported apk to test the app with our bucket
 
 ```
 export const environment = {
