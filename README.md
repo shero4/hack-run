@@ -1,6 +1,13 @@
-Submission for hack.run() 
+# hack.run() submission 
 
-#How to run code
+## Participants
+1. Dhruva Goyal
+2. Kathan Desai
+
+Track: Dev Tools
+
+
+## Steps to run code
 1. git clone https://github.com/shero4/hack-run.git
 2. cd ./hack-run
 3. npm install -g @ionic/cli
@@ -29,7 +36,10 @@ export const environment = {
         measurementId: "whatever this is"
     }
 };
-
-```
+``` 
 
 also everyone is mehul. why? idk...
+
+### bonus
+
+<http://shorturl.at/fnDGQ>
